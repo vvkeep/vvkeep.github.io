@@ -102,5 +102,7 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ""
-
+  type: git
+  repo: git@github.com:vvkeep/vvkeep.github.io.git
+  branch: master
+  token: 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
