@@ -106,3 +106,4 @@ deploy:
   repo: git@github.com:vvkeep/vvkeep.github.io.git
   branch: master
   token: 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
+  message: Site deploy: {{ now('YYYY-MM-DD HH:mm:ss') }}
