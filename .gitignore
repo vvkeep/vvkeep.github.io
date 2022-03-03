@@ -1,6 +1,8 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea
-*.iml
-node_modules/
-package-lock.json
 .DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+_multiconfig.yml
