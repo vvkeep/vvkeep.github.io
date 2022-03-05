@@ -722,7 +722,7 @@ valine:
   appId: gvD6AzF27qrFyEJ5SBHJzjoJ-gzGzoHsz
   appKey: Ktz473Q3dlK0rDqvfuTqV8xB
   path: window.location.pathname
-  placeholder: 期待分享您的看法
+  placeholder: 期待分享您的想法
   avatar: 'retro'
   meta: ['nick', 'mail', 'link']
   requiredFields: []
