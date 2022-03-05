@@ -3,14 +3,12 @@ title: Socket编程基础
 date: 2022-03-05 16:42:37
 toc: true
 categories: "计算机网络原理"
-tags:
-    - 网络
-    - Socket
+tags: [网络, Socket]
 ---
 
-## 一、套接字与端口号
+![socket](/img/posts/socket.png)
 
-![socket](../img/post/socket.png)
+## 一、套接字与端口号
 
 * 套接字(Socket)：典型的网络应用编程接口
 * 端口号：标识套接字
