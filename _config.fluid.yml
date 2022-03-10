@@ -222,7 +222,7 @@ web_analytics:  # 网页访问统计
   # 百度统计的 Key，值需要获取下方链接中 `hm.js?` 后边的字符串
   # Baidu analytics, get the string behind `hm.js?`
   # See: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376
-  baidu: '27777c8ff497e4637cb397f94f18ab22'
+  baidu: '235bcb93b73674205dcfe80bc941a80b'
 
   # Google 统计的 Tracking ID
   # Google analytics, set Tracking ID
