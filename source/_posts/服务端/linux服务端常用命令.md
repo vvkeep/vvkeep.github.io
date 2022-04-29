@@ -15,6 +15,6 @@ gunzip -v spring.log.2022-04-20.*.gz
 
 压缩某个文件
 ```
-tar -zcvf spring.log.2022-04-20.12.tar.gz spring.log.2022-04-20.12
+tar -zcvf spring.log.2022-04-20.12 spring.log.2022-04-20.12.tar.gz
 
 ```
