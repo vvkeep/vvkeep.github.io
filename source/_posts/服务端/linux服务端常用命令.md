@@ -2,6 +2,7 @@
 title: linux服务端常用命令
 date: 2022-04-25 22:42:31
 tags:
+hide: true
 ---
 
 ```
