@@ -21,6 +21,8 @@ index_img: /images/posts/iOS-MacOS下dmg制作流程.png
    cd /Users/mac/Desktop/JSONConverter 
    ln -s /Applications Applications  
    ```
+   {% asset_img 04.png 600 Applications %}
+
 3. 打开磁盘工具 -> 新建映像 -> 基于文件夹新建映像，选择刚创建的文件夹，点击 存储
     {% asset_img 03.png 600 export %}
 
