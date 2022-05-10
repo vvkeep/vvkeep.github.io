@@ -1,0 +1,768 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/icon.jpeg">
+  <link rel="icon" href="/images/icon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="vvkeep">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="vvkeep&#39;s blog">
+<meta property="og:url" content="https://vvkeep.github.io/index.html">
+<meta property="og:site_name" content="vvkeep&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="vvkeep">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>vvkeep&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"vvkeep.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"235bcb93b73674205dcfe80bc941a80b","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚巍的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://picsum.photos/1296/720') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="输给谁都可以，唯独不能输给自己">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/05/10/iOS/MacOS%E4%B8%8Bdmg%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B/" target="_self">
+          <img src="/images/posts/iOS-MacOS%E4%B8%8Bdmg%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B.png" srcset="/img/loading.gif" lazyload alt="MacOS下dmg制作流程">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/10/iOS/MacOS%E4%B8%8Bdmg%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B/" target="_self">
+          MacOS下dmg制作流程
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/10/iOS/MacOS%E4%B8%8Bdmg%E5%88%B6%E4%BD%9C%E6%B5%81%E7%A8%8B/" target="_self">
+          
+          一、归档Release包 菜单栏选择 product -&gt; Archive  点击 Distribute App 按钮，选择 Copy App    点击 Next，选择导出名称和目录, Export 发布包   二、制作dmg镜像 新建空白文件夹，重命名文件夹为应用名称，拖入刚导出的应用程序 打开终端命令，进入刚创建文件夹，制作 Applications快捷方式12cd &#x2F;Users&#x2F;ma
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-10 09:59" pubdate>
+              2022-05-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/iOS/">iOS</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MacOS/">MacOS</a>
+            
+              <a href="/tags/dmg/">dmg</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/%E7%BA%BF%E6%80%A7%E8%A1%A8/" target="_self">
+          数据结构导论-线性表
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/%E7%BA%BF%E6%80%A7%E8%A1%A8/" target="_self">
+          
+          一、线性表的基本概念线性表是由n(n&gt;&#x3D;0)个数据元素（节点）$a_{1}$, $a_{2}$, … $a_{n}$组成的有限序列。  数据元素的个数n定义为表的长度，n&#x3D;0时称为空表，记作（）或φ 将非空的线性表（n&gt;0）记作：L&#x3D;($a_{1}$, $a_{2}$, … $a_{n}$), $a_{1}$称为起始结点，$a_{n}$称为终端结点，对任意
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-03 00:05" pubdate>
+              2022-05-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/">数据结构导论</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%8C%E9%93%BE%E8%A1%A8/">线性表，链表</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/%E6%A6%82%E5%BF%B5/" target="_self">
+          数据结构导论-概念
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/%E6%A6%82%E5%BF%B5/" target="_self">
+          
+          一、 概念 数据： 所有被计算机存储、处理的对象。 数据元素： 数据的基本单位，是运算的基本单位，尝尝又简称为元素。 数据项： 数据元素常常还可以分为若干个数据项，数据的不可分割的最小标识单位。  二、数据结构分类1. 逻辑结构 数据的逻辑结构：指数据元素之间的结构关系，与数据元素本身的形式，内容，相对位置，个数无关。 数据的四类逻辑结构    - 集合： 任意两个节点之间都没 有邻接关系，组织形
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-05-01 23:09" pubdate>
+              2022-05-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/">数据结构导论</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">时间复杂度</a>
+            
+              <a href="/tags/%E7%A9%BA%E9%97%B4%E8%B4%9F%E8%BD%BD%E5%BA%A6/">空间负载度</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E7%89%A9%E7%90%86%E5%B1%82/" target="_self">
+          计算机网络原理-物理层
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E7%89%A9%E7%90%86%E5%B1%82/" target="_self">
+          
+          一、基带传输一、基带传输基本概念基带传输：直接在信道传送基带信号数字基带传输：在信道中传输数字基带信号 二、数字基带传输编码一、信号码  单极不归零码    双极不归零码    单极归零码    双极归零码    差分码（相对码）   利用电平的变化与否来表示信息 二进制数字0：相邻电平无跳变 二进制数字1：相邻电平有有跳变    二、传输码  AMI码（信号交替反转码，3种电平）     双相码
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-04 21:47" pubdate>
+              2022-04-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">计算机网络原理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%9F%BA%E5%B8%A6%E4%BC%A0%E8%BE%93/">基带传输</a>
+            
+              <a href="/tags/%E9%A2%91%E5%B8%A6%E4%BC%A0%E8%BE%93/">频带传输</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E7%BD%91%E7%BB%9C%E5%B1%82/" target="_self">
+          计算机网络原理-网络层
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E7%BD%91%E7%BB%9C%E5%B1%82/" target="_self">
+          
+          一、网络层服务任务：将数据从源主机送达到目的主机 功能：  转发：当里输入链路接收到一个分组后，路由器需要决策那条输出链路将分组发送出去，并将分组从输入接口转移到输出接口 路由选择：当分组从源主机流向目的主机是，必须通过某种方式决定分组经过的路由或路径 连接建立：网络层连接是从源主机到目的主机主机经过的一条路径，这条路径经过的每个路由器等网络设备都要参与网络层连接的建立  二、数据报网络与虚电路网
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-09 21:54" pubdate>
+              2022-03-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">计算机网络原理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%B7%AF%E7%94%B1/">路由</a>
+            
+              <a href="/tags/IP/">IP</a>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B1%82/">网络层</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/" target="_self">
+          计算机网络原理-传输层
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/" target="_self">
+          
+          一、传输层的基本服务1.传输层功能 应用进程之间提供端到端的逻辑通信服务,只有主机才有传输层，网络核心中的中间系统只用到下三层（物理层、数据链路层、网络层） 的功能   对应用层报文进行分段和重组 面向应用层实现复用与分解 实现端到端的流量控制 拥塞控制 传输层寻址 对报文进行差错检测 实现进程间端到端可靠数据传输控制  2.传输层寻址与端口 一台计算机中，不同应用进程用进程标识符(进程ID)来区
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-05 23:09" pubdate>
+              2022-03-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">计算机网络原理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/TCP/">TCP</a>
+            
+              <a href="/tags/UDP/">UDP</a>
+            
+              <a href="/tags/%E4%BC%A0%E8%BE%93%E5%B1%82/">传输层</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E5%BA%94%E7%94%A8%E5%B1%82/" target="_self">
+          计算机网络原理-应用层
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E5%BA%94%E7%94%A8%E5%B1%82/" target="_self">
+          
+          一、计算机网络应用体系结构一、C&#x2F;S结构网络应用客户&#x2F;服务器结构的网络应用是最典型、最基本的网络应用。例如：www应用，文件传输，电子邮件。特点：  通信双方分为客户程序和服务器程序，用户与用户之间不进行直接通信 服务器程序需先运行 客户程序后运行，主动与服务器进行通信  二、纯P2P结构的网络应用通信双方没有传统意义上的客户端服务器之分，地位对等，通信双方都具备客户端与服务器
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-05 16:42" pubdate>
+              2022-03-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">计算机网络原理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+              <a href="/tags/Socket/">Socket</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
+          计算机网络原理-基本概念
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
+          
+          一、计算机网络基本概念一、计算机网络的定义 起源：计算机网络是计算机技术与通讯技术融合的产物 定义：计算机网络是互连、自治的的计算机集合 ISP：因特网服务提供商(Internet Service Provider, ISP)  二、协议的定义 网络协议：网路通信实体之间在数据交换过程中需要遵循的约定或规则 三要素 语法：定义实体之间交换信息的格式与结构 语义：定义实体之间交换信息的控制信息 时序
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-01 23:09" pubdate>
+              2022-03-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">计算机网络原理</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84/">网络结构</a>
+            
+              <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD/">网络性能</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      jQuery.ajax({
+        type: 'GET',
+        url: 'https://v1.hitokoto.cn/?c=f&amp;c=j',
+        headers: {},
+        dataType: 'json',
+        success: function(result) {
+          var text;
+          if (result) {
+            var keys = 'hitokoto'.split(',');
+            if (result instanceof Array) {
+              result = result[0];
+            }
+            for (const k of keys) {
+              var value = result[k];
+              if (typeof value === 'string') {
+                text = value;
+                break;
+              } else if (value instanceof Object) {
+                result = value;
+              }
+            }
+          }
+          text ? typing(text) : typing(title);
+        },
+        error: function() {
+          typing(title);
+        }
+      })
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?235bcb93b73674205dcfe80bc941a80b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

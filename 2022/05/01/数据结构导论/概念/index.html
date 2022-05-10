@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/icon.jpeg">
+  <link rel="icon" href="/images/icon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="vvkeep">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、 概念 数据： 所有被计算机存储、处理的对象。 数据元素： 数据的基本单位，是运算的基本单位，尝尝又简称为元素。 数据项： 数据元素常常还可以分为若干个数据项，数据的不可分割的最小标识单位。  二、数据结构分类1. 逻辑结构 数据的逻辑结构：指数据元素之间的结构关系，与数据元素本身的形式，内容，相对位置，个数无关。 数据的四类逻辑结构    - 集合： 任意两个节点之间都没 有邻接关系，组织形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构导论-概念">
+<meta property="og:url" content="https://vvkeep.github.io/2022/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="vvkeep&#39;s blog">
+<meta property="og:description" content="一、 概念 数据： 所有被计算机存储、处理的对象。 数据元素： 数据的基本单位，是运算的基本单位，尝尝又简称为元素。 数据项： 数据元素常常还可以分为若干个数据项，数据的不可分割的最小标识单位。  二、数据结构分类1. 逻辑结构 数据的逻辑结构：指数据元素之间的结构关系，与数据元素本身的形式，内容，相对位置，个数无关。 数据的四类逻辑结构    - 集合： 任意两个节点之间都没 有邻接关系，组织形">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-01T15:09:03.000Z">
+<meta property="article:modified_time" content="2022-05-07T06:00:30.608Z">
+<meta property="article:author" content="vvkeep">
+<meta property="article:tag" content="时间复杂度">
+<meta property="article:tag" content="空间负载度">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>数据结构导论-概念 - vvkeep&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"vvkeep.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"235bcb93b73674205dcfe80bc941a80b","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚巍的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据结构导论-概念">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-01 23:09" pubdate>
+        2022年5月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据结构导论-概念</h1>
+            
+            <div class="markdown-body">
+              <h2 id="一、-概念"><a href="#一、-概念" class="headerlink" title="一、 概念"></a>一、 概念</h2><ul>
+<li>数据： 所有被计算机存储、处理的对象。</li>
+<li>数据元素： 数据的基本单位，是运算的基本单位，尝尝又简称为元素。</li>
+<li>数据项： 数据元素常常还可以分为若干个数据项，<strong>数据的不可分割的最小标识单位</strong>。</li>
+</ul>
+<h2 id="二、数据结构分类"><a href="#二、数据结构分类" class="headerlink" title="二、数据结构分类"></a>二、数据结构分类</h2><h3 id="1-逻辑结构"><a href="#1-逻辑结构" class="headerlink" title="1. 逻辑结构"></a>1. 逻辑结构</h3><p> 数据的逻辑结构：指数据元素之间的结构关系，与数据元素本身的形式，内容，相对位置，个数无关。<br> 数据的<strong>四类逻辑结构</strong><br>    - <strong>集合：</strong> 任意两个节点之间都没 有邻接关系，组织形式松散<br>    - <strong>线性结构：</strong> 节点按逻辑关系依次排列形成一条”锁链”<br>    - <strong>树形结构：</strong> 具有<strong>分支、层次</strong>特性，上层的节点可以和下层多个节点相邻接，但下层节点只能和上层的一个节点相邻接<br>    - <strong>图结构：</strong> 任何两个节点都可以相邻接，**最复杂 **</p>
+<h3 id="2-存储结构"><a href="#2-存储结构" class="headerlink" title="2. 存储结构"></a>2. 存储结构</h3><p>数据的存储结构：也称为存储结构，指数据结构在机内的表示，数据的逻辑结构在计算机的实现<br>存储结构的主要部分</p>
+<ul>
+<li>存储结点（每个存储结点存放一个数据元素）</li>
+<li>数据元素之间关联方式的表示</li>
+</ul>
+<h2 id="三、-存储结构种类"><a href="#三、-存储结构种类" class="headerlink" title="三、 存储结构种类"></a>三、 存储结构种类</h2><h3 id="1-顺序存储结构"><a href="#1-顺序存储结构" class="headerlink" title="1. 顺序存储结构"></a>1. 顺序存储结构</h3><p>   将元素存储到<strong>一片连续的存储区</strong>，利用节点在存储器中的相对位置来表示数据元素的<strong>逻辑</strong>关系</p>
+<ul>
+<li>特点：<br>   a. 预先分配好长度，需要预估存储数据需要的存储量<br>   b. 插入和删除需要移动其他元素<br>   c. 存取快捷，是随机存储结构</li>
+</ul>
+<h3 id="2-链式存储结构"><a href="#2-链式存储结构" class="headerlink" title="2. 链式存储结构"></a>2. 链式存储结构</h3><p>   是给节点附加一个指针字段，指出其后继节点的位置，即存放节点的存储单元为两部分：数组项和指针项，每个指针指向一个与本节点有逻辑关系的节点，用指针表示数据元素之间的<strong>逻辑</strong>关系</p>
+<ul>
+<li>特点：<br>a. 动态分配，不需要预先确定内存分配<br>b. 插入和删除不需要移动其他元素<br>c. 非随机存储结构</li>
+</ul>
+<h3 id="3-索引存储方式"><a href="#3-索引存储方式" class="headerlink" title="3. 索引存储方式"></a>3. 索引存储方式</h3><p>   借助索引表中的<strong>索引指示</strong>各存储结点的存储位置</p>
+<h3 id="4-散列存储方式"><a href="#4-散列存储方式" class="headerlink" title="4. 散列存储方式"></a>4. 散列存储方式</h3><p>   用<strong>散列函数</strong>只是各结点的存储位置</p>
+<h2 id="四、-运算"><a href="#四、-运算" class="headerlink" title="四、 运算"></a>四、 运算</h2><blockquote>
+<p>运算是指某种逻辑结构上施加的操作，即对逻辑结构的加工。</p>
+</blockquote>
+<p><strong>线性表、栈和队列</strong>中的元素具有相同的逻辑结构（即<strong>线性结构</strong>），但有不同的运算集，它们是不同的数据结构。<br>运算的实现是指改运算的算法，一个算法规定了求解给定问题所需的<strong>处理步骤及其执行顺序</strong>，使得给定问题能在有限时间内被求解。</p>
+<p>评价算法好坏的因为包括一下几个方面:</p>
+<ul>
+<li>1.正确性 </li>
+<li>2.易读性</li>
+<li>3.<strong>健壮性</strong></li>
+<li>4.<strong>时空性</strong></li>
+</ul>
+<p>时空性 通常考虑两个度量：</p>
+<ul>
+<li><p>1.时间复杂度：算法运行时需要的总步数，通常是问规模的函数</p>
+<p>  常见的时间复杂度按数量级递增配列依次为：</p>
+<ul>
+<li><ol>
+<li>常数O(1)</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>对数阶($\log_{2}n$)</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>线性阶O(n)</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>线性对数阶O(n$\log_{2}n$)</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>平方阶O($n^{2}$)</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>多项式阶O($n^{c}$)</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>指数阶O($C^{n}$)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>我们将时间复杂度记为输入数据规模n的函数，若求解问题需要执行$n^{2}$次操作则，记作O($n^{2}$) </p>
+<ul>
+<li><ol start="2">
+<li>空间复杂度：算法执行时所占用的存储空间，通常是问题规模的函数</li>
+</ol>
+<p>  空间复杂度是对一个算法在运行过程中<strong>临时占用存储空间大小的量度</strong><br>  一个算法在执行期间所需要的存储空间量包括以下部分：</p>
+<ul>
+<li>程序代码所占用的空间</li>
+<li>输出数据所占用的空间</li>
+<li>辅助变量所占用的空间</li>
+</ul>
+</li>
+</ul>
+<p>   估算算法空间复杂度时，一般<strong>只分析辅助变量所占用的空间</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/">数据结构导论</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">时间复杂度</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%A9%BA%E9%97%B4%E8%B4%9F%E8%BD%BD%E5%BA%A6/">空间负载度</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%BC%E8%AE%BA/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构导论-线性表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E7%89%A9%E7%90%86%E5%B1%82/">
+                        <span class="hidden-mobile">计算机网络原理-物理层</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'vvkeep/vvkeep-comment-utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?235bcb93b73674205dcfe80bc941a80b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/icon.jpeg">
+  <link rel="icon" href="/images/icon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="vvkeep">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、传输层的基本服务1.传输层功能 应用进程之间提供端到端的逻辑通信服务,只有主机才有传输层，网络核心中的中间系统只用到下三层（物理层、数据链路层、网络层） 的功能   对应用层报文进行分段和重组 面向应用层实现复用与分解 实现端到端的流量控制 拥塞控制 传输层寻址 对报文进行差错检测 实现进程间端到端可靠数据传输控制  2.传输层寻址与端口 一台计算机中，不同应用进程用进程标识符(进程ID)来区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络原理-传输层">
+<meta property="og:url" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="vvkeep&#39;s blog">
+<meta property="og:description" content="一、传输层的基本服务1.传输层功能 应用进程之间提供端到端的逻辑通信服务,只有主机才有传输层，网络核心中的中间系统只用到下三层（物理层、数据链路层、网络层） 的功能   对应用层报文进行分段和重组 面向应用层实现复用与分解 实现端到端的流量控制 拥塞控制 传输层寻址 对报文进行差错检测 实现进程间端到端可靠数据传输控制  2.传输层寻址与端口 一台计算机中，不同应用进程用进程标识符(进程ID)来区">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/stop-and-wait.png">
+<meta property="og:image" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/UDP.png">
+<meta property="og:image" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/TCP.png">
+<meta property="og:image" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/TCP-Connect.png">
+<meta property="og:image" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/tcp_disconnect.png">
+<meta property="article:published_time" content="2022-03-05T15:09:03.000Z">
+<meta property="article:modified_time" content="2022-04-16T09:13:46.732Z">
+<meta property="article:author" content="vvkeep">
+<meta property="article:tag" content="TCP">
+<meta property="article:tag" content="UDP">
+<meta property="article:tag" content="传输层">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vvkeep.github.io/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/stop-and-wait.png">
+  
+  
+  <title>计算机网络原理-传输层 - vvkeep&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"vvkeep.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"235bcb93b73674205dcfe80bc941a80b","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>姚巍的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计算机网络原理-传输层">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-05 23:09" pubdate>
+        2022年3月5日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机网络原理-传输层</h1>
+            
+            <div class="markdown-body">
+              <h2 id="一、传输层的基本服务"><a href="#一、传输层的基本服务" class="headerlink" title="一、传输层的基本服务"></a>一、传输层的基本服务</h2><h3 id="1-传输层功能"><a href="#1-传输层功能" class="headerlink" title="1.传输层功能"></a>1.传输层功能</h3><blockquote>
+<p><strong>应用进程</strong>之间提供<strong>端到端</strong>的<strong>逻辑通信</strong>服务,只有<strong>主机</strong>才有传输层，网络核心中的中间系统只用到<strong>下三层（物理层、数据链路层、网络层）</strong> 的功能</p>
+</blockquote>
+<ul>
+<li>对应用层报文进行<em><strong>分</strong></em>段和重组</li>
+<li>面向应用层实现<em><strong>复</strong></em>用与分解</li>
+<li>实现端到端的<em><strong>流</strong></em>量控制</li>
+<li><em><strong>拥</strong></em>塞控制</li>
+<li>传输层<em><strong>寻</strong></em>址</li>
+<li>对报文进行<em><strong>差错</strong></em>检测</li>
+<li>实现进程间端到端<em><strong>可靠</strong></em>数据传输控制</li>
+</ul>
+<h3 id="2-传输层寻址与端口"><a href="#2-传输层寻址与端口" class="headerlink" title="2.传输层寻址与端口"></a>2.传输层寻址与端口</h3><ul>
+<li>一台计算机中，不同应用进程用<strong>进程标识符(进程ID)<strong>来区分，在</strong>全网</strong>范围内利用<strong>IP地址+端口号</strong>唯一标识一个通信端点。</li>
+<li>传输层端口号为16位整数，可以编号65536（2的16次方）</li>
+<li>常用端口号：<strong>端口号小于256的端口</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">范围</th>
+<th align="center">类型</th>
+<th align="center">属于</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0 ~ 1023</td>
+<td align="center">熟知端口号</td>
+<td align="center">服务器端口号</td>
+</tr>
+<tr>
+<td align="center">1024 ~ 49151</td>
+<td align="center">登记端口号</td>
+<td align="center">服务器端口号</td>
+</tr>
+<tr>
+<td align="center">49152 ~ 65535</td>
+<td align="center">短暂端口号</td>
+<td align="center">客户器端口号</td>
+</tr>
+</tbody></table>
+<h2 id="二、传输层的复用与分解"><a href="#二、传输层的复用与分解" class="headerlink" title="二、传输层的复用与分解"></a>二、传输层的复用与分解</h2><blockquote>
+<p><strong>复用与分解</strong>：支持众多应用进程共用同一个传输层协议，并能够将收到的数据准确交付给不同的应用进程</p>
+</blockquote>
+<h3 id="1-无连接的多路复用与分解"><a href="#1-无连接的多路复用与分解" class="headerlink" title="1.无连接的多路复用与分解"></a>1.无连接的多路复用与分解</h3><blockquote>
+<p>用户数据报协议(User Datagram Protocol, <em>UDP</em>):Internet 提供<strong>无连接服务</strong>的传输层协议</p>
+</blockquote>
+<ul>
+<li>UDP套接字二元组:&lt;目的IP地址，目的端口号&gt;</li>
+</ul>
+<h3 id="2-面向连接的多路复用与分解"><a href="#2-面向连接的多路复用与分解" class="headerlink" title="2.面向连接的多路复用与分解"></a>2.面向连接的多路复用与分解</h3><blockquote>
+<p>传输控制协议(Transmission Control Protocol, <em>TCP</em>): Internet提供<strong>面向连接服务</strong>的传输层协议</p>
+</blockquote>
+<ul>
+<li>TCP套接字四元组：&lt;源IP地址，源端口号，目的IP地址，目的端口号&gt;</li>
+</ul>
+<h2 id="三、停-等协议与滑动窗口协议"><a href="#三、停-等协议与滑动窗口协议" class="headerlink" title="三、停-等协议与滑动窗口协议"></a>三、停-等协议与滑动窗口协议</h2><h3 id="1-可靠数据传输基本原理"><a href="#1-可靠数据传输基本原理" class="headerlink" title="1.可靠数据传输基本原理"></a>1.可靠数据传输基本原理</h3><ul>
+<li><p>不可靠传输信道在数据传输中可能发生：</p>
+<ul>
+<li>比特差错</li>
+<li>乱序</li>
+<li>数据丢失</li>
+</ul>
+</li>
+<li><p>基于不可靠信道实现可靠数据传输采取的措施：</p>
+<ul>
+<li>差错检测：利用编码实现数据报传输过程中的比特差错检测</li>
+<li>确认：接收方向发送方反馈接收状态。ACK（肯定确认）；NAK（否定确认）</li>
+<li>重传：发送方重新发送接受方没有正确接收的数据</li>
+<li>序号：确保数据按序提交</li>
+<li>计时器：解决数据丢失问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-停-等协议"><a href="#2-停-等协议" class="headerlink" title="2.停-等协议"></a>2.停-等协议</h3><img src="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/stop-and-wait.png" srcset="/img/loading.gif" lazyload class="" title="停-等协议流程">
+
+<ul>
+<li>停-等协议工作流程<ul>
+<li>发送方发送经过差错编码和编号的报文段，等待接收方确认</li>
+<li>接收方如果差错检测无误且序号正确，则接受报文段，并向发送方发送ACK，否则丢弃报文段，并向发送方发送NAK</li>
+<li>发送方如果接受到ACK，则继续发送后续报文，否则重发刚刚发送的报文段。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-滑动窗口协议"><a href="#3-滑动窗口协议" class="headerlink" title="3.滑动窗口协议"></a>3.滑动窗口协议</h3><blockquote>
+<p>流水线协议(管道协议):允许发送方在没有收到确认前连续发送多个分组。最典型的流水线协议:<strong>滑动窗口协议</strong></p>
+</blockquote>
+<p>滑动窗口协议，根据窗口的大小，可以分为：</p>
+<ul>
+<li><p>回退N步协议：GBN协议(Go-Back-N)</p>
+<ul>
+<li>发送端缓存能力高，可以在没有得到确认前发送多个分组</li>
+<li>接收端缓存能力很低，只能接受1个按需到达的分组，不能缓存未按序到达的分组</li>
+<li>发送窗口 &gt;&#x3D;1, 接收窗口 &#x3D;1</li>
+<li>累计确认</li>
+</ul>
+</li>
+<li><p>选择重传协议：SR协议(Selective Repeat)</p>
+<ul>
+<li>发送端缓存能力高，接收端缓存能力高</li>
+<li>发送窗口 &gt;1, 接收窗口 &gt;1</li>
+<li>逐个确认</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、用户数据报协议-UDP"><a href="#四、用户数据报协议-UDP" class="headerlink" title="四、用户数据报协议(UDP)"></a>四、用户数据报协议(UDP)</h2><blockquote>
+<p>用户数据报协议(UDP)：Internet<strong>传输层</strong>协议，提供<strong>无连接</strong>、不可靠、数据报尽力传输服务。</p>
+</blockquote>
+<h3 id="1-UDP特点"><a href="#1-UDP特点" class="headerlink" title="1.UDP特点"></a>1.UDP特点</h3><ul>
+<li>应用进程容易控制发送什么数据以及何时发送，会出现分组的丢失和重复</li>
+<li>无需建立连接</li>
+<li>无连接</li>
+<li>首部开销小，只有8个字节（Byte）</li>
+</ul>
+<h3 id="2-UDP数据报结构"><a href="#2-UDP数据报结构" class="headerlink" title="2.UDP数据报结构"></a>2.UDP数据报结构</h3><img src="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/UDP.png" srcset="/img/loading.gif" lazyload class="" title="UDP结构">
+
+<p>UDP首部四个字段，每个字段长度都是2个字节，共8个字节</p>
+<ul>
+<li>源端口号和目的端口号：UDP实现复用和分解</li>
+<li>长度：UDP报文段中的字节数（首部和数据的总和）</li>
+<li>校验和：接收方使用来检测数据报是否出现差错</li>
+</ul>
+<h3 id="3-UDP校验和"><a href="#3-UDP校验和" class="headerlink" title="3.UDP校验和"></a>3.UDP校验和</h3><ul>
+<li><p>计算规则</p>
+<ol>
+<li>所有参与运算的内容按照<strong>16位对齐求和</strong></li>
+<li>求和过程中遇到<strong>溢出（即进位）</strong>都被<strong>回卷</strong>（即进位与和的最低位再相加）</li>
+<li>最后得到的和<strong>取反码</strong>，就是UDP的校验和，填入UDP数据报的校验和字段</li>
+</ol>
+</li>
+<li><p>参数运算的内容</p>
+<ol>
+<li>UDP伪首部（只在计算校验和使用，发送时不包含 ）</li>
+<li>UDP首部</li>
+<li>应用数据</li>
+</ol>
+</li>
+</ul>
+<h2 id="五、传输控制协议-TCP"><a href="#五、传输控制协议-TCP" class="headerlink" title="五、传输控制协议(TCP)"></a>五、传输控制协议(TCP)</h2><blockquote>
+<p>传输控制协议（Transmission Control Protocol, TCP）：Internet传输层协议。提供面向连接、可靠、有序、字节流传输服务</p>
+</blockquote>
+<ul>
+<li>应用进程先建立连接</li>
+<li>每一条TCP连接只有两个端点</li>
+<li>可靠交付：无差错、不丢失、不重复、按序到达</li>
+<li>全双工通讯</li>
+<li>面向字节流</li>
+</ul>
+<h3 id="1-TCP报文段结构"><a href="#1-TCP报文段结构" class="headerlink" title="1.TCP报文段结构"></a>1.TCP报文段结构</h3><img src="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/TCP.png" srcset="/img/loading.gif" lazyload class="" title="TCP结构">
+
+<ol>
+<li>源端口号字段、目的端口号字段个占16位，复用和分解上层应用的数据</li>
+<li>序号字段、确认序号字段各占用32 位<ul>
+<li>序号字段：TCP序号是对每个应用层数据的<strong>每个字节</strong>进行编号</li>
+<li>确认序号字段：<strong>期望</strong>从对方接收数据的字节序号，即该序号对应的字节尚未收到</li>
+</ul>
+</li>
+<li>首部长度：占4位。指出TCP段的首部长度，以<strong>4字节为计算单位</strong>，长度在20~60个字节之间</li>
+<li>保留字段：占6位。保留为今后使用， 目前值为0</li>
+<li>URG&#x2F;ACK&#x2F;PSH&#x2F;RST&#x2F;SYN&#x2F;FIN各占1位。为标志位字段，各占1位，取值0或1<ul>
+<li>紧急URG &#x3D; 1, 紧急指针字段有效，优先传送</li>
+<li>确认ACK &#x3D; 1，确认序号字段有效，ACK&#x3D;0,确认序号字段无效</li>
+<li>推送PSH &#x3D; 1，尽快将报文段中的数据交付接收应用进程，不要等缓存满了再交付</li>
+<li>复位RST &#x3D; 1，TCP连接出现严重差错，释放连接，再重新建立TCP连接</li>
+<li>同步SYN &#x3D; 1，该TCP报文段是一个建立新连接请求控制段或同意建立线连接的确认段</li>
+<li>终止FIN &#x3D; 1，TCP报文段的发送端数据已经发送完毕，请求释放连接</li>
+</ul>
+</li>
+<li>接收窗口字段：占16位。向对方通告我方接收窗口的大小。实现TCP的流量控制</li>
+<li>校验和字段：占16位。计算方法与UDP校验和的计算方法相同</li>
+<li>紧急指针字段：占16位。URG &#x3D;1时，才有效，支出在本TCP报文段中紧急数据共有多少个字节</li>
+<li>选项字段长度可变，最短为0字节，最长为40字节</li>
+</ol>
+<h3 id="2-TCP连接管理"><a href="#2-TCP连接管理" class="headerlink" title="2.TCP连接管理"></a>2.TCP连接管理</h3><h4 id="1-连接建立（3次握手）"><a href="#1-连接建立（3次握手）" class="headerlink" title="1. 连接建立（3次握手）"></a>1. 连接建立（3次握手）</h4><img src="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/TCP-Connect.png" srcset="/img/loading.gif" lazyload class="" title="TCP三次握手">
+
+<ol>
+<li><p>第一次握手，客户端向服务期发送连接请求段：（SYN&#x3D;1,seq&#x3D;x）</p>
+<ul>
+<li>SYN&#x3D;1：建立连接请求控制段</li>
+<li>seq&#x3D;x：表示传输的报文段的第1个数据字节的序列号是x，此序列号代表整个报文段的序号(补充：sequence number，序号的意思)</li>
+</ul>
+</li>
+<li><p>第二次握手，服务器发回确认报文段：（SYN&#x3D;1,ACK&#x3D;1,seq&#x3D;y,ack_seq&#x3D;x+1）</p>
+<ul>
+<li>SYN&#x3D;1：同意建立新连接的确认段</li>
+<li>ACK&#x3D;1：确认序号字段有效</li>
+<li>seq&#x3D;y：服务器告诉客户确认报文段的序列号是y</li>
+<li>ack_seq&#x3D;x+1：表示已经收到了序列号为x的报文段，准备接收序列号为x+1的报文段。服务器由LISTEN进入SYN_REVD(同步收到)</li>
+</ul>
+</li>
+<li><p>第三次握手，客户端对服务器的<strong>同意连接报文段</strong>进行确认：（ACK&#x3D;1,seq&#x3D;x+1,ack_seq&#x3D;y+1）</p>
+<ul>
+<li>ACK&#x3D;1：确认序号字段有效</li>
+<li>seq&#x3D;x+1：客户此次的报文段的序列号是x+1</li>
+<li>ack_seq&#x3D;y+1：客户期望及手段服务器序列号为y+1的报文段</li>
+</ul>
+</li>
+</ol>
+<p>总结</p>
+<ul>
+<li>第一次握手：客户发送请求，此时服务器知道客户能发</li>
+<li>第二次握手：服务发送确认，此时客户知道服务器能收能发</li>
+<li>第三次握手：客户发送确认，此时服务器知道客户能收</li>
+</ul>
+<p>补充</p>
+<ul>
+<li>当客户端发送ACK时，客户端进入ESTABLISHED状态</li>
+<li>当服务端收到ACK时，也进入ESTABLISHED状态</li>
+<li>第三次握手客户端可携带数据</li>
+</ul>
+<h4 id="2-连接断开（4次挥手）"><a href="#2-连接断开（4次挥手）" class="headerlink" title="2. 连接断开（4次挥手）"></a>2. 连接断开（4次挥手）</h4><img src="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E4%BC%A0%E8%BE%93%E5%B1%82/tcp_disconnect.png" srcset="/img/loading.gif" lazyload class="" title="TCP四次挥手">
+
+<ol>
+<li><p>第一次挥手，客户向服务器发送释放连接报文段：（FIN&#x3D;1,seq&#x3D;u）</p>
+<ul>
+<li>FIN&#x3D;1：发送端数据发送完毕，请求释放连接</li>
+<li>seq&#x3D;u：传输的第一个数据字节的序号是u</li>
+<li>客户端状态由ESTABLISHED进入FIN_WAIT_1(终止等待1状态)</li>
+</ul>
+</li>
+<li><p>第二次挥手，服务器向客户发送确认段：（ACK&#x3D;1,seq&#x3D;v,ack_seq&#x3D;u+1）</p>
+<ul>
+<li>ACK&#x3D;1：确认字号段有效</li>
+<li>ack_seq&#x3D;u+1：服务器期望接收客户数据序号为u+1</li>
+<li>seq&#x3D;v：服务器传输的数据序号是v</li>
+<li>服务器状态由ESTABLISHED进入CLOSE_WAIT(关闭等待)</li>
+<li>客户端收到ACK后，由FIN_WAIT_1进入FIN_WAIT_2</li>
+</ul>
+</li>
+<li><p>第三次挥手，服务器向客户发送释放连接报文段：(FIN&#x3D;1,ACK&#x3D;1,seq&#x3D;v+1,ack_seq&#x3D;u+1)</p>
+<ul>
+<li>FIN&#x3D;1: 请求释放连接</li>
+<li>ACK&#x3D;1:  确认字号段有效</li>
+<li>ack_seq&#x3D;u+1：服务器期望接收客户数据序号为u+1</li>
+<li>seq&#x3D;v+1: 表示自己传输的第一个数据字节序号是v+1</li>
+<li>服务器状态由CLOSE_WAIT进入LAST_ACK(最后确认)</li>
+</ul>
+</li>
+<li><p>第四次挥手，客户向服务器发送确认段：（ACK&#x3D;1,seq&#x3D;u+1,ack_seq&#x3D;v+1+1）</p>
+<ul>
+<li>ACK&#x3D;1：确认序号段有效</li>
+<li>ack_seq&#x3D;v+1+1：表示客户期望接收服务器数据序号是v+1+1</li>
+<li>seq&#x3D;u+1:表示客户传输的数据序号是u+1</li>
+<li>客户端由FIN_WAIT_2进入TIME_WAIT,等待2MSL时间，进入CLOSED</li>
+<li>服务器在收到最后一次ACK后，由LAST_ACK进入CLOSED</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-TCP可靠数据传输"><a href="#3-TCP可靠数据传输" class="headerlink" title="3.TCP可靠数据传输"></a>3.TCP可靠数据传输</h3><ol>
+<li><p><strong>可靠</strong>：保证接收方应用进程从缓冲区读出的字节流与发送方发出的字节流是完全一样的</p>
+</li>
+<li><p>TCP实现可靠数据传输的工作机制：</p>
+<ul>
+<li>a. 分段：应用层数据被<strong>分割</strong>成TCP认为最合适发送的数据块；最大报文段长度(Maximum Segment Size, MSS)，报文段中封装的<strong>应用层数据</strong>的最大长度，MSS不包含TCP首部长度</li>
+<li>b. 序号：发送方对发送的数据报进行编号，确保数据按序提交给接收方，一个字节占用一个序号，序号字段指的就是一个报文段第一个字节的序号</li>
+<li>c. 确认：接收方向发送方反馈接收状态，确认是否正确接收数据，TCP采取累积确认</li>
+<li>d. 差错检测：利用差戳编码实现数据报传输过程中的比特查错检测（甚至纠正）</li>
+<li>e. 重传：发送方重新发送接收方没有正确接收的数据</li>
+<li>d. 计时器：在发送方引入计时器，解决数据丢失问题</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-TCP流量控制"><a href="#4-TCP流量控制" class="headerlink" title="4.TCP流量控制"></a>4.TCP流量控制</h3><p>协调发送方与接收方的数据发送与接收速度，在通信过程中，接收方设置报文段的接收<strong>接收窗口字段</strong>来将窗口大小通知给发送方</p>
+<h3 id="5-TCP拥塞控制"><a href="#5-TCP拥塞控制" class="headerlink" title="5.TCP拥塞控制"></a>5.TCP拥塞控制</h3><p>拥塞：太多的主机以太快的速度向网络中发送太多的数据，超出了网络处理能力，导致大量数据分组拥挤在中间设备队列中等待转发，网络性能显著下降的现象</p>
+<p>拥塞预防策略：流量整形技术，规范主机向网络发送数据的流量</p>
+<p>拥塞控制：通过合理调度、规范、调整向网络中发送数据的主机数量、发送速率、数据量，以<strong>避免</strong>拥塞或<strong>消除</strong>已发生的拥塞</p>
+<p>概念补充</p>
+<ol>
+<li>拥塞窗口（CongWin）：连接开始，CongWin&#x3D;1MSS, MSS:1个最大报文段长度（Maximum Segment Size）</li>
+<li>阈值（Threshold）:临界值</li>
+</ol>
+<p>TCP拥塞控制的算法</p>
+<ol>
+<li>慢启动：在TCP连接建立时，每经过1个RTT，拥塞窗口值增大一倍</li>
+<li>拥塞避免：当拥塞窗口大于等于阈值时，每经过1个RTT,拥塞窗口值加1</li>
+<li>快速重传：接收端收到3次重复确认，则推断被重复确认的报文段已经丢失，于是<strong>立即发送被重复确认</strong>的报文段 </li>
+<li>快速恢复<ul>
+<li><p>当发生3次重复确认时，网络拥塞程度不是很严重</p>
+<ul>
+<li>新的阈值为当前<strong>拥塞窗口</strong>的一半</li>
+<li>新的拥塞窗口调整为新的阈值</li>
+<li>不在重新从慢启动阶段开始，而是直接从新的阈值开始，直接进入拥塞避免阶段</li>
+</ul>
+</li>
+<li><p>当发生计时器超时</p>
+<ul>
+<li>新的阈值为当前<strong>拥塞窗口</strong>的一半</li>
+<li>闲的拥塞窗口直接调整为1MSS</li>
+<li>重新从慢启动阶段开始</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/">计算机网络原理</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/TCP/">TCP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/UDP/">UDP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BC%A0%E8%BE%93%E5%B1%82/">传输层</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E7%BD%91%E7%BB%9C%E5%B1%82/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算机网络原理-网络层</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86/%E5%BA%94%E7%94%A8%E5%B1%82/">
+                        <span class="hidden-mobile">计算机网络原理-应用层</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'vvkeep/vvkeep-comment-utterances');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?235bcb93b73674205dcfe80bc941a80b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
