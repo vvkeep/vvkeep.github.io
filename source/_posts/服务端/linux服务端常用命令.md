@@ -14,6 +14,11 @@ tail -f -n200 | grep '全量同步linkedMall商品类别数据结束' spring.log
 gunzip -v spring.log.2022-04-20.*.gz
 ```
 
+解压文件(.tar.gz后缀)
+```
+tar -zxvf xxxx.tar.gz
+```
+
 压缩某个文件
 ```
 tar -zcvf spring.log.2022-04-20.12 spring.log.2022-04-20.12.tar.gz
