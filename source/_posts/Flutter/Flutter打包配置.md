@@ -306,3 +306,13 @@ if (dartEnvVariables.APP_ENV != 'public') {
 
 ![201](./Flutter打包配置/201.png)
 ![202](./Flutter打包配置/202.png)
+
+* 关于打包版本说明
+![203](./Flutter打包配置/203.png)
+
+# 三、iOS AppStore 配置
+```
+https://appstoreconnect.apple.com/
+```
+![251](./Flutter打包配置/251.png)
+
