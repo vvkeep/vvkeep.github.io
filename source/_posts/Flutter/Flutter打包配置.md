@@ -246,8 +246,7 @@ fi
 * 取消Xcode自增版本号
 ![200](./Flutter打包配置/200.png)
 
-* 增加 PRE ACTION
-  
+* iOS 增加 PRE ACTION  
 ```
 function entry_decode() { echo "${*}" | base64 --decode; }
 IFS=',' read -r -a define_items <<< "$DART_DEFINES"
@@ -283,6 +282,26 @@ fi
 
 outs=("APP_ENV=$env" "APP_NAME=$app_name")
 printf "%s\n" "${outs[@]}" > ${SRCROOT}/Flutter/DartDefineConfigs.xcconfig
+```
+
+* Andorid
+```
+//获取渠道参数使用,设置默认参数
+def dartEnvVariables = [APP_ENV: 'dev',]
+//设置默认名称
+def appName = '奕管'
+if (project.hasProperty('dart-defines')) {
+    dartEnvVariables = dartEnvVariables + project.property('dart-defines')
+            .split(',')
+            .collectEntries { entry ->
+                def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+                [(pair.first()): pair.last()]
+            }
+}
+
+if (dartEnvVariables.APP_ENV != 'public') {
+    appName += "-${dartEnvVariables.APP_ENV}"
+}
 ```
 
 ![201](./Flutter打包配置/201.png)
